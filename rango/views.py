@@ -4,9 +4,9 @@ from django.shortcuts import render
 
 def index(request):
 
-    return render(request, 'index.html')
+    return render(request, 'rango/index.html', {'boldmessage': 'Crunchy, creamy, cookie, candy, cupcake!'})
 
 
 def about(request):
 
-    return render(request, 'about.html')
+    return render(request, 'rango/about.html')
