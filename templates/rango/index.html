@@ -5,7 +5,24 @@
     <title>Index</title>
 </head>
 <body>
+    <h2>Most Liked Categories</h2>
+    <h2>Most Viewed Pages</h2>
     Rango says hey there partner!
     <a href="/rango/about/">About</a><br />
+
+    <li><a href="/rango/category/python/">Python</a></li>
+    <li><a href="/rango/category/django/">Django</a></li>
+    <li><a href="/rango/category/other-frameworks/">Other Frameworks</a></li>
+
+    {% for category in categories %}
+        {% empty %} <strong>There are no categories present.</strong>
+    {% endfor %}
+
+    {% for page in pages %}
+        <li><a href="{{ page.url }}">{{ page.title }}</a></li>
+        {% empty %} <strong>There are no pages present.</strong>
+    {% endfor %}
+
+    <li><a href="/rango/category/test-category/">Test Category</a></li>
 </body>
 </html>

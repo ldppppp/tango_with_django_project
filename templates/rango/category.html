@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Category</title>
+</head>
+<body>
+    {% if not category %}
+        <p>The specified category does not exist.</p>
+    {% endif %}
+
+    {% for page in pages %}
+        {% empty %} <strong>No pages currently in category.</strong>
+    {% endfor %}
+
+    <h1>Other Frameworks</h1>
+    <ul>
+        <li><a href="http://bottlepy.org/docs/dev/">Bottle</a></li>
+        <li><a href="http://flask.pocoo.org">Flask</a></li>
+    </ul>
+    <a href="/rango/">index</a>
+</body>
+</html>
