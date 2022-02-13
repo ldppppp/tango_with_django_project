@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Category</title>
+    <title>Rango-{{ category.name }}</title>
+    {% block title_block %}{% if category %}{{ category.name }}{% else %}Unknown Category{% endif %}{% endblock %}
 </head>
 <body>
     {% if not category %}
