@@ -1,3 +1,6 @@
+from datetime import datetime, timedelta
+
+import requests
 from django.contrib import auth
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
@@ -8,6 +11,14 @@ from .models import Category, Page
 
 
 def index(request):
+    if 'visits' not in request.session:
+        request.session['visits'] = 0
+    if 'last_visit' not in request.session:
+        request.session['last_visit'] = ''
+
+    # request.session['last_visit'] = str(datetime.now() - timedelta(days=1))
+    request.session['visits'] += 1
+
     categories = Category.objects.order_by('-views')
     pages = Page.objects.order_by('-views')
     return render(request, 'rango/index.html',
@@ -17,7 +28,11 @@ def index(request):
 
 
 def about(request):
-    return render(request, 'rango/about.html')
+    context = {}
+    if 'visits' in request.session.keys():
+        context['visits'] = request.session['visits']
+
+    return render(request, 'rango/about.html', context=context)
 
 
 def admin(request):

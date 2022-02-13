@@ -1,6 +1,12 @@
 {% extends 'rango/base.html' %}
 {% block title_block %}About Rango{% endblock %}
 {% block content %}
+    {% for key, value in request.session.items %}
+        {% ifequal 'visits' key %}
+            Visits: {{ value }}
+        {% endifequal %}
+    {% endfor %}
+
     Rango says here is the about page.<br>
     here is the about page.<br>
     This tutorial has been put together by <br>
