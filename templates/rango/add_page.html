@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ADD_PAGE</title>
+</head>
+<body>
+    <form action="/rango/category/{{ category_name_slug }}/add_page/" method="post">
+        title: <input type="text" name="title" />
+        url: <input type="text" name="url" />
+        views: <input type="number" name="views">
+
+        <input type="submit" name="submit" />
+    </form>
+</body>
+</html>

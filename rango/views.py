@@ -1,7 +1,9 @@
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.urls import reverse
 
-from rango.models import Category, Page
+from .models import Category, Page
+from .forms import CategoryForm, PageForm
 
 
 def index(request):
@@ -34,3 +36,27 @@ def show_category(request, category_name_slug):
 
     pages = Page.objects.filter(category=category)
     return render(request, 'rango/category.html', {'category': category, 'pages': pages})
+
+
+def add_category(request):
+    form = CategoryForm(request.POST)
+    instance = None
+    if form.is_valid():
+        instance = form.save()
+
+    return render(request, 'rango/add_category.html', {'form': form, 'instance': instance})
+
+
+def add_page(request, category_name_slug):
+    try:
+        category = Category.objects.get(slug=category_name_slug)
+    except:
+        return redirect(reverse('rango:index'))
+
+    p = Page.objects.create(category=category)
+    form = PageForm(request.POST, instance=p)
+
+    if form.is_valid():
+        form.save()
+
+    return render(request, 'rango/add_page.html', {'form': form, 'category_name_slug': category_name_slug})
