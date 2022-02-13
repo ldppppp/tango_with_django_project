@@ -1,17 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Rango-Add a Page</title>
-    {% block title_block %}Add a Page{% endblock %}
-</head>
-<body>
+{% extends 'rango/base.html' %}
+{% block title_block %}Add a Page{% endblock %}
+{% block content %}
     <form action="/rango/category/{{ category_name_slug }}/add_page/" method="post">
+        {% csrf_token %}
         title: <input type="text" name="title" />
         url: <input type="text" name="url" />
         views: <input type="number" name="views">
 
         <input type="submit" name="submit" />
     </form>
-</body>
-</html>
+{% endblock %}

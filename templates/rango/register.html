@@ -1,0 +1,27 @@
+{% extends 'rango/base.html' %}
+{% block title_block %}Register{% endblock %}
+{% block content %}
+    <h1>Register for Rango</h1>
+    Rango says: <strong>register here!</strong>
+
+    <form enctype="multipart/form-data" action="/rango/register/" method="post">
+        {% csrf_token %}
+        {{ user_form }}
+        {{ userprofile_form }}
+        <p><label for="id_username">Username:</label> <input type="text" name="username" required id="id_username"></p>
+        <p><label for="id_password">Password:</label> <input type="password" name="password" required id="id_password"></p>
+        <p><label for="id_email">Email:</label> <input type="text" name="email" required id="id_email"></p>
+        <input type="submit" name="submit" value="Register" />
+    </form>
+
+    <!-- bad_register -->
+    {% ifequal status 'F' %}
+        <ul class="errorlist"></ul>
+    {% endifequal %}
+
+    <!-- good_register -->
+    {% ifequal status 'T' %}
+        Rango says: <strong>thank you for registering!</strong>
+        <a href="/rango/">Return to the homepage.</a>
+    {% endifequal %}
+{% endblock %}

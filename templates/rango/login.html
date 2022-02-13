@@ -1,0 +1,10 @@
+{% extends 'rango/base.html' %}
+{% block title_block %}Login{% endblock %}
+{% block content %}
+    <h1>Login to Rango</h1>
+    <form action="{% url 'rango:login' %}" method="post">
+        username: <input type="text" name="username" />
+        password: <input type="password" name="password" />
+        <input type="submit" value="submit" />
+    </form>
+{% endblock %}

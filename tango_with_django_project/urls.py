@@ -26,5 +26,6 @@ urlpatterns = [
     url(r'^rango/', include('rango.urls', namespace='rango')),
     # path('admin/', admin.site.urls),
     path('admin/', views.admin),
-    path('admin/rango/page/', views.page)
+    path('admin/rango/page/', views.page),
+    path('admin/rango/userprofile/', views.userprofile),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

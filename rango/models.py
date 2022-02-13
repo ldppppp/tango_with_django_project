@@ -1,4 +1,7 @@
+from django.contrib.auth.models import User
 from django.db import models
+from django.db.models.fields.files import ImageFile
+from django.db.models.fields.related import OneToOneField
 from django.template.defaultfilters import slugify
 
 
@@ -24,3 +27,11 @@ class Page(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class UserProfile(models.Model):
+    user = models.fields.related.OneToOneField(User, on_delete=models.CASCADE, default=None)
+    website = models.fields.URLField(default='')
+    picture = models.fields.files.ImageField(default='')
+
+
